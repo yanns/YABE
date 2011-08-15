@@ -5,9 +5,13 @@ import play.cache.Cache;
 import play.data.validation.Required;
 import play.libs.Codec;
 import play.libs.Images;
+import play.libs.WS;
+import play.libs.WS.HttpResponse;
 import play.mvc.*;
 
 import java.util.*;
+
+import org.w3c.dom.Document;
 
 import models.*;
 
@@ -25,6 +29,22 @@ public class Application extends Controller {
             "order by postedAt desc"
         ).from(1).fetch(10);
         render(frontPost, olderPosts);
+    }
+    
+    public static void country() {
+        String IP = request.remoteAddress;
+        if (Play.mode.isDev()) {
+            IP = "87.193.216.74";
+        }
+        Logger.info("resolve country for IP: %s", IP);
+        HttpResponse post = WS.url("http://www.webservicex.net/geoipservice.asmx/GetGeoIP?IPAddress=" + IP).get();
+        if (!post.success()) {
+            error();
+        }
+        Document doc = post.getXml();
+        String countryName = doc.getElementsByTagName("CountryName").item(0).getTextContent();
+        Logger.info("country for IP: %s is %s", IP, countryName);
+        renderJSON("{\"countryName\": \"" + countryName + "\"}");
     }
     
     public static void show(Long id) {

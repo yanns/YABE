@@ -9,6 +9,17 @@
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.6.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
+        <script type="text/javascript">
+        $(document).ready(function() {
+        	$.ajax({
+        		  url: '/country',
+        		  dataType: 'json',
+        		  success: function(data) {
+        			  $('#country').text('You are in ' + data.countryName);
+        		  }
+        		});
+        });
+        </script>
     </head>
     <body>
         
@@ -36,6 +47,8 @@
             Yabe is a (not that) powerful blog engine built with the 
             <a href="http://www.playframework.org">Play framework</a>
             as a tutorial application.
+            <br/>
+            <span id="country"></span>
         </p>
         
     </body>
