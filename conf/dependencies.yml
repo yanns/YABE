@@ -4,3 +4,5 @@ require:
     - play
     - crud
     - secure
+    - play -> cobertura 2.1: 
+        id: test
