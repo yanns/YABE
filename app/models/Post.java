@@ -3,18 +3,25 @@ package models;
 import java.util.*;
 import javax.persistence.*;
  
+import play.data.validation.*;
 import play.db.jpa.*;
  
 @Entity
 public class Post extends Model {
  
+    @Required
     public String title;
+
+    @Required
     public Date postedAt;
     
     @Lob
+    @Required
+    @MaxSize(10000)
     public String content;
     
     @ManyToOne
+    @Required
     public User author;
     
     @OneToMany(mappedBy="post", cascade=CascadeType.ALL)
@@ -64,4 +71,9 @@ public class Post extends Model {
         ).bind("tags", tags).bind("size", tags.length).fetch();
     }
     
+    @Override
+    public String toString() {
+        return title + " (" + author + ")";
+    }
+
 }
