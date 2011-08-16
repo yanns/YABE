@@ -8,7 +8,7 @@
  
     // Check that the front post is present
     assertTextPresent('About the model layer')
-    assertTextPresent('by Bob, 14 Jun 09')
+    assertTextPresent('by Bob, 16 Aug 11')
     assertTextPresent('2 comments , latest by Guest')
     assertTextPresent('It is the domain-specific representation')
  
@@ -20,8 +20,8 @@
 #{selenium 'Test comments'}
  
     // Click on 'The MVC application post'
-    clickAndWait('link=The MVC application')
-    assertTextPresent('The MVC application')
+    clickAndWait('link=The MVC application draft')
+    assertTextPresent('The MVC application draft')
     assertTextPresent('no comments')
     
     // Post a new comment

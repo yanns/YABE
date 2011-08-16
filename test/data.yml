@@ -10,10 +10,15 @@ User(jeff):
     email:          jeff@gmail.com
     password:       secret
     fullname:       Jeff    
-    
+
+User(alice):
+    email:          alice@gmail.com
+    password:       secret
+    fullname:       alice    
+
 Post(firstBobPost):
     title:          About the model layer
-    postedAt:       2009-06-14
+    postedAt:       2011-08-16
     author:         bob
     content:        >
                     The model has a central position in a Play! application. It is the domain-specific 
@@ -44,6 +49,37 @@ Post(jeffPost):
                     This pattern splits the application into separate layers: the Presentation 
                     layer and the Model layer. The Presentation layer is further split into a 
                     View and a Controller layer.
+                    
+Post(jeffPost):
+    title:          The MVC application draft
+    postedAt:       2009-05-06
+    author:         jeff
+    content:        >
+                    A Play! application follows the MVC architectural pattern as applied to the 
+                    architecture of the Web.
+                    
+                    This pattern splits the application into separate layers: the Presentation 
+                    layer and the Model layer. The Presentation layer is further split into a 
+                    View and a Controller layer.
+                    
+Post(jeff2Post):
+    title:          The MVC application second draft
+    postedAt:       2009-05-06
+    author:         alice
+    content:        >
+                    A Play! application follows the MVC architectural pattern as applied to the 
+                    architecture of the Web.
+                    
+                    This pattern splits the application into separate layers: the Presentation 
+                    layer and the Model layer.
+                    
+Post(jeff2Post):
+    title:          The MVC application first draft
+    postedAt:       2009-05-05
+    author:         alice
+    content:        >
+                    A Play! application follows the MVC architectural pattern as applied to the 
+                    architecture of the Web.
                     
 Comment(c1):
     author:         Guest

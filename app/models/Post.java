@@ -1,7 +1,10 @@
 package models;
  
 import java.util.*;
+
 import javax.persistence.*;
+
+import org.joda.time.DateTime;
  
 import play.data.validation.*;
 import play.db.jpa.*;
@@ -76,6 +79,14 @@ public class Post extends Model {
         ).bind("tags", tags).bind("size", tags.length).fetch();
     }
     
+    
+    public static List<Post> findPostFromInactivUsers() {
+        DateTime forOneYear = new DateTime().minusYears(1);
+        return Post.find(
+                "select p from Post p where p.author not in (select pp.author from Post pp where pp.postedAt > :oldDate) group by p.author, p.postedAt"
+        ).bind("oldDate", forOneYear.toDate()).fetch();
+    }
+
     @Override
     public String toString() {
         return title + " (" + author + ")";

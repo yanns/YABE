@@ -1,5 +1,6 @@
 import org.junit.*;
 import java.util.*;
+
 import play.test.*;
 import models.*;
 
@@ -97,8 +98,8 @@ public class BasicTest extends UnitTest {
         Fixtures.loadModels("data.yml");
      
         // Count things
-        assertEquals(2, User.count());
-        assertEquals(3, Post.count());
+        assertEquals(3, User.count());
+        assertEquals(4, Post.count());
         assertEquals(3, Comment.count());
      
         // Try to connect as users
@@ -127,6 +128,10 @@ public class BasicTest extends UnitTest {
         frontPost.addComment("Jim", "Hello guys");
         assertEquals(3, frontPost.comments.size());
         assertEquals(4, Comment.count());
+        
+        List<Post> postsFromInactivUsers = Post.findPostFromInactivUsers();
+        for (Post post : postsFromInactivUsers) System.out.println(post);
+        assertEquals(2, postsFromInactivUsers.size());
     }
     
     @Test
