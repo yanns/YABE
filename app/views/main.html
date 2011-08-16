@@ -18,6 +18,13 @@
         			  $('#country').text('You are in ' + data.countryName);
         		  }
         		});
+        	if (window.WebSocket) {
+        		   url = '@@{PostsWebSocket.listen}';
+        		   w = new WebSocket(url);
+        		   w.onmessage = function(e) {
+        			   $('#post-nbr').text(e.data + ' posts');
+        		   }
+        	}
         });
         </script>
     </head>
@@ -36,6 +43,7 @@
                 <span class="about">About this blog</span>
                 <h1><a href="@{Application.index()}">${blogTitle}</a></h1>
                 <h2>${blogBaseline}</h2>
+                <h3 id="post-nbr"></h3>
             </div>
         </div>
         

@@ -42,6 +42,14 @@ public class Post extends Model {
     	this.tags = new TreeSet<Tag>();
     }
     
+    @PostPersist void onPostPersist() {
+        StatefulModel.instance.event.publish("" + count());
+    }
+    
+    @PostRemove void onPostRemove() {
+        StatefulModel.instance.event.publish("" + (count() - 1));
+    }
+    
     public Post addComment(String author, String content) {
         Comment newComment = new Comment(this, author, content).save();
         this.comments.add(newComment);

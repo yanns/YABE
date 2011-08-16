@@ -12,6 +12,7 @@ GET     /country                                Application.country
 GET     /posts/{tag}                            Application.listTagged
 GET     /tags/{tag}                             Application.listTags
 
+WS      /postsListen                            PostsWebSocket.listen
 
 GET     /admin/myPosts/{id}                     Admin.form
 GET     /admin/new                              Admin.form
