@@ -2,6 +2,9 @@ package models;
  
 import java.util.*;
 import javax.persistence.*;
+
+import net.sf.oval.constraint.Assert;
+import net.sf.oval.constraint.NotNull;
  
 import play.data.validation.*;
 import play.db.jpa.*;
@@ -20,6 +23,14 @@ public class User extends Model {
     public String password;
 
     public String fullname;
+    
+    public Date birthday;
+    
+    @NotNull(when = "groovy:_this.birthday == null")
+    @Assert(expr = "_value == null || _this.birthday == null", lang = "groovy", message="Either Age or date of birth should be empty")
+    @Min(0)
+    public Integer age;
+    
     public boolean isAdmin;
     
     public User(String email, String password, String fullname) {
