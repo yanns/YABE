@@ -1,5 +1,17 @@
 #{extends 'CRUD/layout.html' /}
 #{set title:messages.get('crud.show.title', type.modelName) /}
+#{set 'moreStyles'}
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery.cleditor.css'}" />
+#{/set}
+#{set 'moreScripts'}
+    <script src="@{'/public/javascripts/jquery.cleditor.min.js'}"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#object_content').cleditor();
+    });
+    </script>
+#{/set}
+
 
 <div id="crudShow" class="${type.name}">
 

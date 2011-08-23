@@ -432,6 +432,10 @@ tr.odd {
     padding-left: 0;
 }
 
+.crudField, .cleditorMain {
+	clear: both;
+}
+
 .crudField label {
     color: #B8FA5C;
 }
