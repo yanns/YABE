@@ -3,6 +3,8 @@ package models;
 import java.util.*;
 
 import javax.persistence.*;
+
+import com.google.gson.annotations.SerializedName;
  
 import play.data.validation.Required;
 import play.db.jpa.*;
@@ -11,6 +13,7 @@ import play.db.jpa.*;
 public class Tag extends Model implements Comparable<Tag> {
  
     @Required
+    @SerializedName("value")
     public String name;
     
     private Tag(String name) {

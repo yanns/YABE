@@ -9,6 +9,7 @@ GET     /posts/{<[0-9]+>id}                     Application.show
 POST    /posts/{postId}/comments                Application.postComment
 GET     /captcha                                Application.captcha
 GET     /posts/{tag}                            Application.listTagged
+GET     /tags/{tag}                             Application.listTags
 
 
 GET     /admin/myPosts/{id}                     Admin.form

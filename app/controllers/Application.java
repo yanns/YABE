@@ -64,4 +64,10 @@ public class Application extends Controller {
         List<Post> posts = Post.findTaggedWith(tag);
         render(tag, posts);
     }
+    
+    public static void listTags(String tag) {
+        notFoundIfNull(tag);
+        List<Tag> tags = Tag.find("byNameLike", "%" + tag + "%").fetch();
+        renderJSON(tags);
+    }
 }
