@@ -38,14 +38,20 @@ public class Application extends Controller {
             IP = "87.193.216.74";
         }
         Logger.info("resolve country for IP: %s", IP);
-        F.Promise<WS.HttpResponse> remoteCall = WS.url("http://www.webservicex.net/geoipservice.asmx/GetGeoIP?IPAddress=" + IP).getAsync();
-        HttpResponse post = await(remoteCall);
+        String key = "IP" + IP;
+        String countryName = (String)Cache.get(key);
+        if (countryName == null) {
+            Logger.info("...using web service");
+            F.Promise<WS.HttpResponse> remoteCall = WS.url("http://www.webservicex.net/geoipservice.asmx/GetGeoIP?IPAddress=" + IP).getAsync();
 
-        if (!post.success()) {
-            error();
+            HttpResponse post = await(remoteCall);
+            if (!post.success()) {
+                error();
+            }
+            Document doc = post.getXml();
+            countryName = doc.getElementsByTagName("CountryName").item(0).getTextContent();
+            Cache.add(key, countryName, "10mn");
         }
-        Document doc = post.getXml();
-        String countryName = doc.getElementsByTagName("CountryName").item(0).getTextContent();
         Logger.info("country for IP: %s is %s", IP, countryName);
         renderJSON("{\"countryName\": \"" + countryName + "\"}");
     }
