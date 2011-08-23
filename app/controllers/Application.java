@@ -4,6 +4,7 @@ import play.*;
 import play.cache.Cache;
 import play.data.validation.Required;
 import play.libs.Codec;
+import play.libs.F;
 import play.libs.Images;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
@@ -37,7 +38,9 @@ public class Application extends Controller {
             IP = "87.193.216.74";
         }
         Logger.info("resolve country for IP: %s", IP);
-        HttpResponse post = WS.url("http://www.webservicex.net/geoipservice.asmx/GetGeoIP?IPAddress=" + IP).get();
+        F.Promise<WS.HttpResponse> remoteCall = WS.url("http://www.webservicex.net/geoipservice.asmx/GetGeoIP?IPAddress=" + IP).getAsync();
+        HttpResponse post = await(remoteCall);
+
         if (!post.success()) {
             error();
         }
