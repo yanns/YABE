@@ -11,6 +11,10 @@ GET     /captcha                                Application.captcha
 GET     /posts/{tag}                            Application.listTagged
 
 
+GET     /admin/myPosts/{id}                     Admin.form
+GET     /admin/new                              Admin.form
+POST    /admin/new                              Admin.save
+
 # Import CRUD routes
 GET     /admin/?                                Admin.index
 *      /admin                                   module:crud

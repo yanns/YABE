@@ -54,6 +54,11 @@ public class Post extends Model {
         return Post.find("postedAt > ? order by postedAt asc", postedAt).first();
     }
     
+    public static Post findByIdAndEmail(Object id, String authorEmail) {
+        if (authorEmail == null) return null;
+        return Post.find("byIdAndAuthor.email", id, authorEmail).first();
+    }
+    
     public Post tagItWith(String name) {
         tags.add(Tag.findOrCreateByName(name));
         return this;
