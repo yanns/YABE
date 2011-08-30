@@ -11,6 +11,7 @@ import play.db.jpa.*;
 import validation.Unique;
  
 @Entity
+@Table(schema="public", name = "user")
 public class User extends Model {
  
     @Email
