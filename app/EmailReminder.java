@@ -11,7 +11,7 @@ import play.jobs.Job;
 import play.libs.Mail;
 
 
-@Every("10s")
+@Every("cron.emailReminder.period")
 public class EmailReminder extends Job {
 
     @Override
