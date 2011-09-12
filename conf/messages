@@ -16,3 +16,7 @@ fullname=Full name
 isAdmin=User is admin
 birthday=Date of birth
 age=Age
+
+secure.username=Your email:
+secure.password=Your password:
+secure.signin=Log in now

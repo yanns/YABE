@@ -12,6 +12,7 @@ GET     /posts/{tag}                            Application.listTagged
 
 
 # Import CRUD routes
+GET     /admin/?                                Admin.index
 *      /admin                                   module:crud
 
 # Ignore favicon requests
